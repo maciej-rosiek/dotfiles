@@ -1,1 +1,1 @@
-Some common .dot files
+common dot files
