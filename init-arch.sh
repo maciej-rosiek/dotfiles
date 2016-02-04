@@ -34,3 +34,4 @@ mkdir ~/.config/i3status
 cp .config/i3/config ~/.config/i3/
 cp .config/i3status/config ~/.config/i3status/
 yaourt vim-jellybeans
+yaourt i3blocks
