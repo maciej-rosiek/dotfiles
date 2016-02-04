@@ -29,6 +29,7 @@ cp .yaourtrc ~/
 cp .zshrc ~/
 cp .Xdefaults ~/
 cp .vimrc ~/
+cp .xinitrc ~/
 mkdir -p ~/.config/i3
 mkdir ~/.config/i3status
 cp .config/i3/config ~/.config/i3/
