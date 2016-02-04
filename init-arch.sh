@@ -13,7 +13,7 @@ echo '[infinality-bundle]' | sudo tee --append /etc/pacman.conf
 echo 'Server = http://bohoomil.com/repo/$arch' | sudo tee --append /etc/pacman.conf
 
 sudo pacman -Syu
-sudo pacman -S i3 xorg xorg-xinit vim git rxvt-unicode rxvt-unicode-terminfo chromium gedit lxappearance arandr alsa-firmware alsa-utils alsa-plugins pulseaudio-alsa pulseaudio thunar thunar-volman thunar-archive-plugin numix-frost-themes numix-icon-theme-square zsh gnome-keyring infinality-bundle networkmanager network-manager-applet udiskie
+sudo pacman -S i3 xorg xorg-xinit vim git rxvt-unicode rxvt-unicode-terminfo chromium gedit lxappearance arandr alsa-firmware alsa-utils alsa-plugins pulseaudio-alsa pulseaudio thunar thunar-volman thunar-archive-plugin numix-frost-themes numix-icon-theme-square zsh gnome-keyring infinality-bundle networkmanager network-manager-applet udiskie acpi
 sudo pacman -R vi
 
 echo '# autostart systemd default session on tty1' | sudo tee --append /etc/profile
