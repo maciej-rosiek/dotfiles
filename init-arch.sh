@@ -36,5 +36,7 @@ cp .config/i3/config ~/.config/i3/
 cp .config/i3status/config ~/.config/i3status/
 yaourt vim-jellybeans
 yaourt i3blocks
+yaourt adobe-source-code-pro-fonts 
+yaourt adobe-source-sans-pro-fonts 
 #yaourt intellij-idea-ultimate-edition
 #yaourt unity-editor
