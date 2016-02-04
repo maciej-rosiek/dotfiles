@@ -193,15 +193,13 @@ bar {
 }
 
 #set $Locker i3lock -i ~/.i3lock.png && sleep 1
-set $sysmenu "(s)uspend, (r)eboot, (Shift+s) shutdown, (n) logout menu, (m) shutdown menu"
+set $sysmenu "(s)uspend, (r)eboot, (Shift+s) shutdown"
 bindsym $mod+Delete mode $sysmenu
 
 mode $sysmenu {
     bindsym s exec --no-startup-id i3lock -u -c '#5f5f5f' && sleep 1 && sync && systemctl suspend; mode "default"
     bindsym r exec --no-startup-id systemctl reboot; mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i; mode "default"
-    bindsym n exec --no-startup-id cinnamon-session-quit --logout; mode "default"
-    bindsym m exec --no-startup-id cinnamon-session-quit --power-off; mode "default"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
