@@ -17,3 +17,20 @@ echo 'if [[ "$(tty)" == '/dev/tty1' ]]; then' | sudo tee --append /etc/profile
 echo 'exec startx' | sudo tee --append /etc/profile
 echo 'fi' | sudo tee --append /etc/profile
 
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+mkdir ~/dev
+cd dev
+git clone https://github.com/maciej-rosiek/dotfiles.git
+cd dotfiles
+cp oh-my-zsh-themes/my.zsh-theme ~/.oh-my-zsh/themes
+cp .screenrc ~/
+cp .yaourtrc ~/
+cp .zshrc ~/
+cp .Xdefaults ~/
+cp .vimrc ~/
+mkdir ~/.config/i3
+mkdir ~/.config/i3status
+cp .config/i3/config ~/.config/i3/
+cp .config/i3status/config ~/.config/i3status/
+yaourt vim-jellybeans
