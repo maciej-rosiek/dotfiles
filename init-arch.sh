@@ -7,8 +7,10 @@
 sudo mkdir /root/.gnupg
 sudo touch dirmngr_ldapservers.conf
 sudo pacman-key --refresh-keys
+sudo pacman-key -r 962DDE58
+sudo pacman-key --lsign-key 962DDE58
 
-sudo pacman -S i3 dmenu xorg xorg-xinit vim git rxvt-unicode rxvt-unicode-terminfo chromium gedit lxappearance arandr alsa-firmware alsa-utils alsa-plugins pulseaudio-alsa pulseaudio thunar thunar-volman thunar-archive-plugin numix-frost-themes numix-icon-theme-square zsh gnome-keyring
+sudo pacman -S i3 dmenu xorg xorg-xinit vim git rxvt-unicode rxvt-unicode-terminfo chromium gedit lxappearance arandr alsa-firmware alsa-utils alsa-plugins pulseaudio-alsa pulseaudio thunar thunar-volman thunar-archive-plugin numix-frost-themes numix-icon-theme-square zsh gnome-keyring infinality-bundle
 sudo pacman -R vi
 
 echo 'exec i3' >> ~/.xinitrc
