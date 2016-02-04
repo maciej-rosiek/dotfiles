@@ -19,10 +19,7 @@ echo 'fi' | sudo tee --append /etc/profile
 
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-mkdir ~/dev
-cd dev
-git clone https://github.com/maciej-rosiek/dotfiles.git
-cd dotfiles
+cd ~/dev/dotfiles
 cp oh-my-zsh-themes/my.zsh-theme ~/.oh-my-zsh/themes
 cp .screenrc ~/
 cp .yaourtrc ~/
