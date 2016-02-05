@@ -40,6 +40,7 @@ yaourt -S i3blocks
 yaourt -S dmenu2
 yaourt -S ttf-vista-fonts
 yaourt -S rxvt-unicode-fontspacing-noinc-vteclear-secondarywheel
+yaourt -S playerctl
 sudo pacman -S rxvt-unicode-terminfo
 sudo systemctl enable NetworkManager
 
