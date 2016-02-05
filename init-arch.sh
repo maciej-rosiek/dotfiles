@@ -41,5 +41,7 @@ yaourt -S dmenu2
 yaourt -S ttf-vista-fonts
 yaourt -S rxvt-unicode-fontspacing-noinc-vteclear-secondarywheel
 sudo pacman -S rxvt-unicode-terminfo
+sudo systemctl enable NetworkManager
+
 #yaourt intellij-idea-ultimate-edition
 #yaourt unity-editor
