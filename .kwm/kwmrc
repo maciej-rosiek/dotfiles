@@ -113,8 +113,13 @@ kwmc config spawn right
 kwmc rule owner="iTerm2" properties={role="AXDialog"}
 kwmc rule owner="Terminal" properties={role="AXDialog"}
 kwmc rule owner="Simulator" properties={role="AXDialog"}
+kwmc rule owner="Calculator" properties={float="true"}
 kwmc rule owner="qemu-system-x86_64" properties={float="true"}
-
+kwmc rule owner="qemu-system-i386" properties={float="true"}
+kwmc rule owner="Calendar" properties={float="true"}
+kwmc rule owner="Simulator" properties={float="true"}
+kwmc rule owner="Preview" properties={float="true"}
+kwmc rule owner="Steam" properties={float="true"}
 /*
 The following commands create rules that
 blacklists an application from Kwms tiling
