@@ -64,10 +64,10 @@ cmd + alt - f            :    /usr/local/bin/kwmc window -z fullscreen
 # cmd + alt + ctrl - k   :    /usr/local/bin/kwmc window -mk north wrap
 
 # Give Focus To Window
-cmd + alt - right        :    /usr/local/bin/kwmc window -f east
-cmd + alt - left         :    /usr/local/bin/kwmc window -f west
-cmd + alt - down         :    /usr/local/bin/kwmc window -f south
-cmd + alt - up           :    /usr/local/bin/kwmc window -f north
+alt + shift - right        :    /usr/local/bin/kwmc window -f east
+alt + shift - left         :    /usr/local/bin/kwmc window -f west
+alt + shift - down         :    /usr/local/bin/kwmc window -f south
+alt + shift - up           :    /usr/local/bin/kwmc window -f north
 
 # cmd + alt - n            :    /usr/local/bin/kwmc window -fm prev
 # cmd + alt - m            :    /usr/local/bin/kwmc window -fm next
