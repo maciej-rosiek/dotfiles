@@ -18,6 +18,7 @@ cmd + alt + ctrl - q     :    /usr/local/bin/kwmc quit
 
 # Launch iTerm2
 cmd - return             :    open -na /Applications/iTerm.app
+cmd - space             :    bash /Users/mrosiek/dchoose
 
 # Set Space Tiling Mode To BSP
 # cmd + ctrl - a           :    /usr/local/bin/kwmc space -t bsp
@@ -63,8 +64,8 @@ cmd + alt - f            :    /usr/local/bin/kwmc window -z fullscreen
 # cmd + alt + ctrl - k   :    /usr/local/bin/kwmc window -mk north wrap
 
 # Give Focus To Window
-cmd + alt - left         :    /usr/local/bin/kwmc window -f west
 cmd + alt - right        :    /usr/local/bin/kwmc window -f east
+cmd + alt - left         :    /usr/local/bin/kwmc window -f west
 cmd + alt - down         :    /usr/local/bin/kwmc window -f south
 cmd + alt - up           :    /usr/local/bin/kwmc window -f north
 
@@ -90,10 +91,10 @@ ctrl + alt - right       :    /usr/local/bin/kwmc window -s east
 #ctrl + alt - n           :    /usr/local/bin/kwmc window -s next
 
 # Detach Focused Window And Reinsert In Direction
-#ctrl + shift - k         :    /usr/local/bin/kwmc window -m north
-#ctrl + shift - l         :    /usr/local/bin/kwmc window -m east
-#ctrl + shift - j         :    /usr/local/bin/kwmc window -m south
-#ctrl + shift - h         :    /usr/local/bin/kwmc window -m west
+ctrl + shift - up         :    /usr/local/bin/kwmc window -m north
+ctrl + shift - right      :    /usr/local/bin/kwmc window -m east
+ctrl + shift - down       :    /usr/local/bin/kwmc window -m south
+ctrl + shift - left       :    /usr/local/bin/kwmc window -m west
 
 # Detach Marked Window And Reinsert At Focused Window
 #ctrl + shift - x         :    /usr/local/bin/kwmc window -m mark
