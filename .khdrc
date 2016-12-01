@@ -27,7 +27,7 @@ cmd - space             :    bash /Users/mrosiek/dchoose
 # cmd + ctrl - s           :    /usr/local/bin/kwmc space -t monocle
 
 # Set Space Tiling Mode To Floating
-# cmd + ctrl - d           :    /usr/local/bin/kwmc space -t float
+#cmd + alt - d           :    /usr/local/bin/kwmc space -t float
 
 # Rotate Window-Tree By 90degrees (Clockwise)
 cmd + ctrl - r           :    /usr/local/bin/kwmc tree rotate 90
@@ -54,7 +54,7 @@ ctrl + cmd - right             :    /usr/local/bin/kwmc window -c expand 0.05 ea
 # Set Temporary Window Container
 cmd + alt - f            :    /usr/local/bin/kwmc window -z fullscreen
 # prefix - d             :    /usr/local/bin/kwmc window -z parent
-# prefix - w             :    /usr/local/bin/kwmc window -t focused
+cmd + alt - d            :    /usr/local/bin/kwmc window -t focused
 
 # Mark Window
 # cmd + alt + ctrl - m   :    /usr/local/bin/kwmc window -mk focused
@@ -64,10 +64,10 @@ cmd + alt - f            :    /usr/local/bin/kwmc window -z fullscreen
 # cmd + alt + ctrl - k   :    /usr/local/bin/kwmc window -mk north wrap
 
 # Give Focus To Window
-alt + shift - right        :    /usr/local/bin/kwmc window -f east
-alt + shift - left         :    /usr/local/bin/kwmc window -f west
-alt + shift - down         :    /usr/local/bin/kwmc window -f south
-alt + shift - up           :    /usr/local/bin/kwmc window -f north
+cmd + alt - right        :    /usr/local/bin/kwmc window -f east
+cmd + alt - left         :    /usr/local/bin/kwmc window -f west
+cmd + alt - down         :    /usr/local/bin/kwmc window -f south
+cmd + alt - up           :    /usr/local/bin/kwmc window -f north
 
 # cmd + alt - n            :    /usr/local/bin/kwmc window -fm prev
 # cmd + alt - m            :    /usr/local/bin/kwmc window -fm next
