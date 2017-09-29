@@ -9,11 +9,9 @@ sudo touch dirmngr_ldapservers.conf
 sudo pacman-key --refresh-keys
 sudo pacman-key -r 962DDE58
 sudo pacman-key --lsign-key 962DDE58
-echo '[infinality-bundle]' | sudo tee --append /etc/pacman.conf
-echo 'Server = http://bohoomil.com/repo/$arch' | sudo tee --append /etc/pacman.conf
 
 sudo pacman -Syu
-sudo pacman -S i3 xorg xorg-xinit vim git chromium gedit lxappearance arandr alsa-firmware alsa-utils alsa-plugins pulseaudio-alsa pulseaudio thunar thunar-volman thunar-archive-plugin numix-frost-themes numix-icon-theme-square zsh gnome-keyring infinality-bundle networkmanager network-manager-applet udiskie acpi
+sudo pacman -S i3 xorg xorg-xinit vim git chromium gedit lxappearance arandr alsa-firmware alsa-utils alsa-plugins pulseaudio-alsa pulseaudio thunar thunar-volman thunar-archive-plugin numix-frost-themes numix-icon-theme-square zsh gnome-keyring networkmanager network-manager-applet udiskie acpi
 sudo pacman -R vi
 
 echo '# autostart systemd default session on tty1' | sudo tee --append /etc/profile
