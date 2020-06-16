@@ -94,3 +94,9 @@ export PATH="$HOME/go/bin:$PATH"
 
 export GOPATH=$HOME/dev/go
 export PATH=$PATH:$(go env GOPATH)/bin
+
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_DEFAULT_OPTS='--height=70% --preview="cat {}" --preview-window=right:60%:wrap'
+
