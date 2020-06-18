@@ -33,14 +33,3 @@ mkdir ~/.config/i3status
 cp ~/dev/dotfiles/.config/i3/config ~/.config/i3/
 cp ~/dev/dotfiles/.config/i3status/config ~/.config/i3status/
 cp ~/dev/dotfiles/.config/.i3blocks.conf ~/.config
-yaourt -S vim-jellybeans
-yaourt -S i3blocks
-yaourt -S dmenu2
-yaourt -S ttf-vista-fonts
-yaourt -S rxvt-unicode-fontspacing-noinc-vteclear-secondarywheel
-yaourt -S playerctl
-sudo pacman -S rxvt-unicode-terminfo
-sudo systemctl enable NetworkManager
-
-#yaourt intellij-idea-ultimate-edition
-#yaourt unity-editor
