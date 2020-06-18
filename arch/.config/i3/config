@@ -149,6 +149,8 @@ bindsym Mod1+Shift+Tab focus left
 # exec --no-startup-id xrandr --output VGA-0 --primary
 exec --no-startup-id nm-applet
 exec --no-startup-id hsetroot -solid "#777777"
+exec --no-startup-id blueman-applet
+exec --no-startup-id picom --config ~/.config/picom.conf 
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -240,3 +242,7 @@ mode "$mode_display" {
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+Shift+x mode "$mode_display"
+
+bindsym Control+$mod+1 exec "maim -s ~/screenshots/screenshot_from_$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'Screenshot taken!' 'It was saved in screenshots dir.' --icon=camera-photo"
+bindsym Control+$mod+2 exec "maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i && notify-send 'Screenshot taken!' 'It was saved in clipboard' --icon=camera-photo"
+bindsym Control+$mod+3 exec "maim ~/screenshots/screenshot_from_$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'Screen Screenshot taken!' 'It was saved in screenshots dir.' --icon=camera-photo"
