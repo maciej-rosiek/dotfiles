@@ -1,4 +1,5 @@
 yay vim-hybrid
+yay dmenu-height
 yay i3blocks
 yay i3blocks
 yay fontawesome
