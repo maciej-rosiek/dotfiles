@@ -7,10 +7,9 @@
 !
 URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
 
-
 ! Fonts
 ! =====
-URxvt.font: xft:Monospace:size=11
+URxvt.font: xft:Monospace:size=10
 URxvt.allow_bold: true
 
 
@@ -50,8 +49,8 @@ URxvt.matcher.button: 3
 URxvt.iso14755:        false
 URxvt.iso14755_52:     false
 ! Disable Ctrl-Alt-c & Ctrl-Alt-v bindings (optional)
-URxvt.keysym.C-M-c:    builtin-string:
-URxvt.keysym.C-M-v:    builtin-string:
+! URxvt.keysym.C-M-c:    builtin-string:
+! URxvt.keysym.C-M-v:    builtin-string:
 ! Bind Ctrl-Shift-c & Ctrl-Shift-v to copy and paste
 ! I dont know why, but I needed to use hex keysym values to get it to work
 URxvt.keysym.C-S-0x43: eval:selection_to_clipboard
@@ -67,7 +66,7 @@ URxvt.keysym.Control-Left:  \033[1;5D
 URxvt.keysym.Control-Right: \033[1;5C
 
 ! clear the scrollback
-URxvt.keysym.Control-l: command:\033c
+! URxvt.keysym.Control-l: command:\033c
 
 ! scale fonts
 URxvt.keysym.C-S-plus: font-size:increase
