@@ -182,6 +182,9 @@ bindsym Shift+$modControl+Mod1+L exec --no-startup-id i3-msg exit
 bindsym Mod1+Tab focus right
 bindsym Mod1+Shift+Tab focus left
 
+bindsym XF86MonBrightnessDown exec ~/bin/brightness Down
+bindsym XF86MonBrightnessUp exec ~/bin/brightness Up
+
 exec --no-startup-id nm-applet # network manager
 exec --no-startup-id hsetroot -solid "#777777" # desktop background color
 exec --no-startup-id blueman-applet # bluetooth
@@ -189,6 +192,7 @@ exec --no-startup-id picom --config ~/.config/picom.conf # screen tearing
 exec --no-startup-id xset r rate 250 30 # keyboard keys speed
 exec --no-startup-id imwheel # mouse scroll settings
 exec --no-startup-id dunst
+exec --no-startup-id feh --bg-fill ~/wallpapers/hovering-fog-3440x1440jpg.jpg
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -220,6 +224,8 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   position top
+  mode hide
+  modifier Shift+Control+$mod
   # status_command i3status
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
   tray_output primary
