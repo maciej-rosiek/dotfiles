@@ -9,7 +9,7 @@ URxvt.perl-ext-common: default,matcher,selection-to-clipboard,font-size
 
 ! Fonts
 ! =====
-URxvt.font: xft:Monospace:size=10
+URxvt.font: xft:Consolas:size=11
 URxvt.allow_bold: true
 
 
@@ -65,6 +65,9 @@ URxvt.keysym.Control-Down:  \033[1;5B
 URxvt.keysym.Control-Left:  \033[1;5D
 URxvt.keysym.Control-Right: \033[1;5C
 
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+
 ! clear the scrollback
 ! URxvt.keysym.Control-l: command:\033c
 
@@ -89,36 +92,39 @@ URxvt.cursorUnderline: 1
 URxvt.background: #222222
 URxvt.foreground: gray
 
-!! Tango Colors
-!
-!! black dark/light
-URxvt.color0: #171A1B
-URxvt.color8: #555753
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
 
-!! red dark/light
-URxvt.color1: #CC0000
-URxvt.color9: #FF0000
+! black
+*.color0:       #282a2e
+*.color8:       #373b41
 
-!! green dark/light
-URxvt.color2: #00DD00
-URxvt.color10: #00FF00
+! red
+*.color1:       #a54242
+*.color9:       #cc6666
 
-!! yellow dark/light
-URxvt.color3: #DDDD00
-URxvt.color11: #FFFF00
+! green
+*.color2:       #8c9440
+*.color10:      #b5bd68
 
-!! blue dark/light
-URxvt.color4: #8888FF
-URxvt.color12: #AAAAFF
+! yellow
+*.color3:       #de935f
+*.color11:      #f0c674
 
-!! magenta dark/light
-URxvt.color5: #75507B
-URxvt.color13: #AD7FA8
+! blue
+*.color4:       #5f819d
+*.color12:      #81a2be
 
-!! cyan dark/light
-URxvt.color6: #06989A
-URxvt.color14: #34E2E2
+! magenta
+*.color5:       #85678f
+*.color13:      #b294bb
 
-!! white dark/light
-URxvt.color7: #D3D7CF
-URxvt.color15: #EEEEEC
+! cyan
+*.color6:       #5e8d87
+*.color14:      #8abeb7
+
+! white
+*.color7:       #707880
+*.color15:      #c5c8c6
