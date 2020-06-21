@@ -26,6 +26,40 @@ for_window [window_role="pop-up"] floating enable,move absolute center
 # for_window [title="Preferences"] floating enable
 # for_window [title="Thunar"] floating enable
 
+# assign special properties
+for_window [class="^Pavucontrol$"] floating enable
+for_window [title="MonoDevelop External Console"] floating enable
+for_window [class="^Shutter$"] floating enable
+# Enables floating windows of the chrome extension "Videostream for Chromecast"
+for_window [instance="^crx_cnciopoikihiagdjbjpnocolokfelagl$"] floating enable
+# The Chrome "Page Unresponsive" dialog is not floating...
+for_window [title="Page Unresponsive"] floating enable
+# Share your screen from Google Cast extension
+for_window [title="Share your screen - Google Cast"] floating enable
+# TeamSpeak new features window
+for_window [class="^TeamSpeak 3$" title="^New TeamSpeak Features"] floating enable
+# Android Device Monitor startup window
+for_window [class="^Monitor$" instance="^Monitor$" title="^Monitor$"] floating enable
+# chromeIPass "No logins found." window
+for_window [title="^chromeIPass$"] floating enable
+for_window [title="Calculator"] floating enable
+
+# Jetbrains
+for_window [class="^com-intellij-updater-Runner$" title="^Update$"] floating enable
+for_window [instance="^sun-awt-X11-XDialogPeer$" title="^Complete Installation$"] floating enable
+
+# https://github.com/ValveSoftware/steam-for-linux/issues/1040
+for_window [class="^Steam$" title="^Friends$"] floating enable
+for_window [class="^Steam$" title="Steam - News"] floating enable
+for_window [class="^Steam$" title=".* - Chat"] floating enable
+for_window [class="^Steam$" title="^Settings$"] floating enable
+for_window [class="^Steam$" title=".* - event started"] floating enable
+for_window [class="^Steam$" title=".* CD key"] floating enable
+for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
+for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
+for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
+for_window [title="^Steam Keyboard$"] floating enable
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -43,7 +77,9 @@ floating_modifier $mod
 focus_follows_mouse no
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec i3-sensible-terminal
+# bindsym $mod+Return exec terminal.sh
+bindsym $mod+Return exec urxvt -cd "`xcwd`"
 bindsym Control+Mod1+t exec i3-sensible-terminal
 
 # kill focused window
@@ -56,7 +92,7 @@ bindsym Mod1+F4 kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn 'Consolas-10'"
+bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -fn 'Consolas-10' -h 22 -p Search"
 
 # change focus
 bindsym $mod+j focus left
@@ -146,11 +182,17 @@ bindsym Shift+$modControl+Mod1+L exec --no-startup-id i3-msg exit
 bindsym Mod1+Tab focus right
 bindsym Mod1+Shift+Tab focus left
 
-# exec --no-startup-id xrandr --output VGA-0 --primary
-exec --no-startup-id nm-applet
-exec --no-startup-id hsetroot -solid "#777777"
-exec --no-startup-id blueman-applet
-exec --no-startup-id picom --config ~/.config/picom.conf 
+bindsym XF86MonBrightnessDown exec ~/bin/brightness Down
+bindsym XF86MonBrightnessUp exec ~/bin/brightness Up
+
+exec --no-startup-id nm-applet # network manager
+exec --no-startup-id hsetroot -solid "#777777" # desktop background color
+exec --no-startup-id blueman-applet # bluetooth
+exec --no-startup-id picom --config ~/.config/picom.conf # screen tearing
+exec --no-startup-id xset r rate 250 30 # keyboard keys speed
+exec --no-startup-id imwheel # mouse scroll settings
+exec --no-startup-id dunst
+exec --no-startup-id feh --bg-fill ~/wallpapers/hovering-fog-3440x1440jpg.jpg
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -182,7 +224,9 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
   position top
-  status_command i3status
+  mode hide
+  modifier Shift+Control+$mod
+  # status_command i3status
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
   tray_output primary
   colors {
@@ -242,6 +286,7 @@ mode "$mode_display" {
 }
 # Declare here the shortcut to bring the display selection menu
 bindsym $mod+Shift+x mode "$mode_display"
+bindsym $mod+Shift+s exec "switch-audio-sink.sh"
 
 bindsym Control+$mod+1 exec "maim -s ~/screenshots/screenshot_from_$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'Screenshot taken!' 'It was saved in screenshots dir.' --icon=camera-photo"
 bindsym Control+$mod+2 exec "maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i && notify-send 'Screenshot taken!' 'It was saved in clipboard' --icon=camera-photo"
