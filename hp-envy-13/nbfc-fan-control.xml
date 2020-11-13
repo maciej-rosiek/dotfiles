@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<FanControlConfigV2 xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <NotebookModel>HP ENVY x360 Convertible 13-ay0xxx (custom)</NotebookModel>
+  <EcPollInterval>1000</EcPollInterval>
+  <ReadWriteWords>false</ReadWriteWords>
+  <CriticalTemperature>85</CriticalTemperature>
+  <FanConfigurations>
+    <FanConfiguration>
+      <FanDisplayName>CPU Fan</FanDisplayName>
+      <WriteRegister>20</WriteRegister>
+      <ReadRegister>17</ReadRegister>
+      <MinSpeedValue>0</MinSpeedValue>
+      <MaxSpeedValue>68</MaxSpeedValue>
+      <IndependentReadMinMaxValues>false</IndependentReadMinMaxValues>
+      <MinSpeedValueRead>0</MinSpeedValueRead>
+      <MaxSpeedValueRead>0</MaxSpeedValueRead>
+      <ResetRequired>true</ResetRequired>
+      <FanSpeedResetValue>255</FanSpeedResetValue>
+      <TemperatureThresholds>
+        <TemperatureThreshold>
+            <FanSpeed>0</FanSpeed>
+            <UpThreshold>0</UpThreshold>
+            <DownThreshold>0</DownThreshold>
+        </TemperatureThreshold>
+        
+        <TemperatureThreshold>
+            <FanSpeed>22</FanSpeed>
+            <UpThreshold>45</UpThreshold>
+            <DownThreshold>40</DownThreshold>
+        </TemperatureThreshold>
+        
+        <TemperatureThreshold>
+            <FanSpeed>40</FanSpeed>
+            <UpThreshold>55</UpThreshold>
+            <DownThreshold>40</DownThreshold>
+        </TemperatureThreshold>
+        
+        <TemperatureThreshold>
+            <FanSpeed>70</FanSpeed>
+            <UpThreshold>65</UpThreshold>
+            <DownThreshold>60</DownThreshold>
+        </TemperatureThreshold>
+        
+        <TemperatureThreshold>
+            <FanSpeed>100</FanSpeed>
+            <UpThreshold>80</UpThreshold>
+            <DownThreshold>70</DownThreshold>
+        </TemperatureThreshold>
+      </TemperatureThresholds>
+      
+      <FanSpeedPercentageOverrides>
+      </FanSpeedPercentageOverrides>
+    </FanConfiguration>
+  </FanConfigurations>
+  <RegisterWriteConfigurations>
+    <RegisterWriteConfiguration>
+      <WriteMode>Or</WriteMode>
+      <WriteOccasion>OnInitialization</WriteOccasion>
+      <Register>15</Register>
+      <Value>8</Value>
+      <ResetRequired>true</ResetRequired>
+      <ResetValue>1</ResetValue>
+      <ResetWriteMode>Set</ResetWriteMode>
+      <Description>Manual Override</Description>
+    </RegisterWriteConfiguration>
+  </RegisterWriteConfigurations>
+</FanControlConfigV2>
