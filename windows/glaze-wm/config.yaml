@@ -227,7 +227,7 @@ keybindings:
 
   # Change the focused window to be floating / tiling.
   - command: "toggle floating"
-    binding: "Alt+Shift+Space"
+    binding: "Alt+LWin+F"
 
   # Change the focused window to be maximized / unmaximized.
   - command: "toggle maximized"
@@ -244,6 +244,10 @@ keybindings:
   # Close focused window.
   - command: "close"
     binding: "Alt+Shift+Q"
+
+  # Close focused window.
+  - command: "exec explorer"
+    binding: "LWin+E"
 
   # Close focused window.
   - command: "close"
