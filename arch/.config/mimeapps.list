@@ -1,0 +1,20 @@
+[Default Applications]
+inode/directory=thunar.desktop
+text/html=google-chrome.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/about=google-chrome.desktop
+x-scheme-handler/unknown=google-chrome.desktop
+inode/socket=code.desktop
+image/png=gpicview.desktop
+image/jpeg=gpicview.desktop
+x-scheme-handler/webcal=google-chrome.desktop
+text/plain=code.desktop
+x-scheme-handler/mailto=google-chrome.desktop
+
+[Added Associations]
+inode/socket=code.desktop;
+image/png=gpicview.desktop;
+image/jpeg=gpicview.desktop;
+application/octet-stream=code.desktop;
+text/plain=code.desktop;

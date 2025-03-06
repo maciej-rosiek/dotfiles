@@ -1,11 +1,7 @@
-pkill -9 pasystray
-pkill -9 nm-applet
-pkill -9 cbatticon
-pkill -9 blueman-applet
+pkill -f pasystray
+pkill -f nm-applet
+#pkill -f flameshot
 
-sleep 1
-
-pasystray &!
-cbatticon &!
-blueman-applet &!
-nm-applet &!
+pasystray &
+nm-applet --indicator &
+#flameshot &
