@@ -20,7 +20,7 @@ floating_minimum_size 800 x 500
 # floating_maximum_size 1000 x 600
 workspace_auto_back_and_forth yes
 new_window normal
-hide_edge_borders none
+hide_edge_borders smart
 bindsym $mod+x [class="^.*"] border toggle
 for_window [class="^.*"] border pixel 1
 for_window [window_role="pop-up"] floating enable,move absolute center
@@ -32,13 +32,13 @@ for_window [title="KeePassXC"] floating enable
 # assign special properties
 for_window [class="^Pavucontrol$"] floating enable
 for_window [title="MonoDevelop External Console"] floating enable
-for_window [class="^Shutter$"] floating enable
+#for_window [class="^Shutter$"] floating enable
 # Enables floating windows of the chrome extension "Videostream for Chromecast"
-for_window [instance="^crx_cnciopoikihiagdjbjpnocolokfelagl$"] floating enable
+#for_window [instance="^crx_cnciopoikihiagdjbjpnocolokfelagl$"] floating enable
 # The Chrome "Page Unresponsive" dialog is not floating...
 for_window [title="Page Unresponsive"] floating enable
 # Share your screen from Google Cast extension
-for_window [title="Share your screen - Google Cast"] floating enable
+# or_window [title="Share your screen - Google Cast"] floating enable
 # TeamSpeak new features window
 for_window [class="^TeamSpeak 3$" title="^New TeamSpeak Features"] floating enable
 # Android Device Monitor startup window
@@ -82,8 +82,11 @@ focus_follows_mouse no
 # start a terminal
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec terminal.sh
-bindsym $mod+Return exec urxvtc -cd "`xcwd`"
-bindsym Control+Mod1+t exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
+#bindsym $mod+Return exec ghostty
+bindsym Print exec flameshot gui
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -96,7 +99,6 @@ bindsym Mod1+F4 kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 bindsym $mod+d exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -p Search"
-
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -137,7 +139,7 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 
 bindsym $mod+Shift+space floating toggle;
-bindsym $mod+Control+space floating toggle; fullscreen disable; resize set 900 610; sticky enable; move window to position 2500 790
+bindsym $mod+Control+space floating toggle; fullscreen disable; resize set 900 610; sticky enable; move window to position 4200 810
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
@@ -188,22 +190,32 @@ bindsym Control+Mod1+L exec --no-startup-id i3lock -u -c '#5f5f5f'
 bindsym Shift+$modControl+Mod1+L exec --no-startup-id i3-msg exit
 bindsym Mod1+Tab exec --no-startup-id rofi -show window
 
-bindsym XF86MonBrightnessDown exec ~/bin/brightness Down
-bindsym XF86MonBrightnessUp exec ~/bin/brightness Up
+#bindsym XF86MonBrightnessDown exec brightnessctl set 15%-
+#bindsym XF86MonBrightnessUp exec brightnessctl set +15%
+#bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+
 
 exec --no-startup-id hsetroot -solid "#777777" # desktop background color
-exec --no-startup-id picom --config ~/.config/picom.conf # screen tearing
-exec --no-startup-id xset r rate 250 30 # keyboard keys speed
+#exec --no-startup-id picom --config ~/.config/picom.conf # screen tearing
+exec --no-startup-id xset r rate 200 30 # keyboard keys speed
+exec --no-startup-id xset s off -dpms
 exec --no-startup-id imwheel # mouse scroll settings
-exec --no-startup-id dunst
-exec --no-startup-id feh --bg-fill ~/wallpapers/hovering-fog-3440x1440jpg.jpg
+exec_always --no-startup-id dunst
+#exec --no-startup-id feh --bg-fill ~/wallpapers/hovering-fog-3440x1440jpg.jpg
 exec --no-startup-id urxvtd -q
+exec --no-startup-id setxkbmap -layout pl
+exec --no-startup-id /home/mrosiek/bin/default-display.sh
+#exec --no-startup-id xfce4-panel
 
 # exec --no-startup-id nm-applet # network manager
 # exec --no-startup-id blueman-applet # bluetooth
 # exec --no-startup-id cbatticon
 # exec --no-startup-id pasystray
 exec --no-startup-id ~/bin/status-bar.sh
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+exec --no-startup-id xsetroot -solid dimgray
+exec --no-startup-id udiskie
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -213,7 +225,7 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym j resize shrink width O px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
         bindsym semicolon resize grow width 10 px or 10 ppt
@@ -230,17 +242,18 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+bindsym $mod+q exec --no-startup-id "python ~/bin/quiet-cmd.py toggle"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
 bar {
   position top
-  # mode hide
-  # modifier Shift+Control+$mod
-  # status_command i3status
+  #mode hide
+  #modifier Shift+Control+$mod
+  #status_command i3status
   status_command i3blocks -c ~/.config/i3/i3blocks.conf
- tray_output primary
+  tray_output primary
   colors {
     separator #666666
     background #222222
@@ -273,38 +286,16 @@ client.unfocused #333333 #333333 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
 #xsetroot -solid "#000000"i
 
-workspace 1 output DisplayPort-0 eDP
-workspace 2 output DisplayPort-0 eDP
-workspace 3 output DisplayPort-0 eDP
-workspace 4 output DisplayPort-0 eDP
-workspace 5 output DisplayPort-0 eDP
-workspace 6 output eDP 
-workspace 7 output eDP
-workspace 8 output eDP
-workspace 9 output eDP
-workspace 10 output eDP
-
-## Manual management of external displays
-# Set the shortcuts and what they do
-set $mode_display Laptop + UW Monitor 1440p (1) | Laptop (2) | Laptop + Monitor 1080p (3) | Monitor 1080p only (4) | Laptop + LG (5)
-mode "$mode_display" {
-    bindsym 1 exec --no-startup-id ~/.screenlayout/home-wide.sh && imwheel; mode "default"
-    bindsym 2 exec --no-startup-id ~/.screenlayout/laptop.sh && pkill imwheel; mode "default"
-    bindsym 3 exec --no-startup-id ~/.screenlayout/home-1080p.sh && imwheel; mode "default"
-    bindsym 4 exec --no-startup-id ~/.screenlayout/home-1080p-only.sh && imwheel; mode "default"
-    bindsym 5 exec --no-startup-id ~/.screenlayout/home-wide-lg.sh && imwheel; mode "default"
-
-    # back to normal: Enter or Escape
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-# Declare here the shortcut to bring the display selection menu
-bindsym $mod+Shift+x mode "$mode_display"
-bindsym $mod+Shift+s exec "switch-audio-sink.sh"
-
-bindsym Control+$mod+1 exec "maim -s ~/screenshots/screenshot_from_$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'Screenshot taken!' 'It was saved in screenshots dir.' --icon=camera-photo"
-bindsym Control+$mod+2 exec "maim -s --format png /dev/stdout | xclip -selection clipboard -t image/png -i && notify-send 'Screenshot taken!' 'It was saved in clipboard' --icon=camera-photo"
-bindsym Control+$mod+3 exec "maim ~/screenshots/screenshot_from_$(date +%Y-%m-%d_%H-%M-%S).png && notify-send 'Screen Screenshot taken!' 'It was saved in screenshots dir.' --icon=camera-photo"
+workspace 1 output DP-0
+workspace 2 output DP-0
+workspace 3 output DP-0
+workspace 4 output DP-0
+workspace 5 output DP-0
+workspace 6 output DP-0
+workspace 7 output HDMI-0
+workspace 8 output HDMI-0
+workspace 9 output HDMI-0
+workspace 10 output HDMI-0
 
 set $mode_compositor Compositor: On (1) | Off (2)
 mode "$mode_compositor" {
@@ -314,3 +305,17 @@ mode "$mode_compositor" {
 
 bindsym $mod+Shift+p mode "$mode_compositor"
 
+
+## Manual management of external displays
+# Set the shortcuts and what they do
+set $mode_display Monitor Wide (1) | Monitor 1080p only (2)
+mode "$mode_display" {
+    bindsym 1 exec --no-startup-id ~/.screenlayout/home-wide.sh && imwheel; mode "default"
+    bindsym 2 exec --no-startup-id ~/.screenlayout/home-1080p.sh && imwheel; mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+Shift+x mode "$mode_display"
