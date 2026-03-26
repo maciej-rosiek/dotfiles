@@ -157,8 +157,8 @@
 
 
     # --- Mouse --- #
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = close_current
     mouse_right_click = close_all
 
 
@@ -187,6 +187,10 @@
     frame_color = "#52426e"
     timeout = 0
     icon = battery-ac-adapter
+
+[claude-code]
+    appname = "Claude Code"
+    timeout = 15
 
 [backlight]
     appname = "Backlight"

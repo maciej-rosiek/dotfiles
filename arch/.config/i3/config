@@ -37,6 +37,7 @@ for_window [title="MonoDevelop External Console"] floating enable
 #for_window [instance="^crx_cnciopoikihiagdjbjpnocolokfelagl$"] floating enable
 # The Chrome "Page Unresponsive" dialog is not floating...
 for_window [title="Page Unresponsive"] floating enable
+for_window [title="^yad$"] floating enable, border none
 # Share your screen from Google Cast extension
 # or_window [title="Share your screen - Google Cast"] floating enable
 # TeamSpeak new features window
@@ -46,6 +47,7 @@ for_window [class="^Monitor$" instance="^Monitor$" title="^Monitor$"] floating e
 # chromeIPass "No logins found." window
 for_window [title="^chromeIPass$"] floating enable
 for_window [title="Calculator"] floating enable
+for_window [class="^com.github.th_ch.youtube_music$"] floating enable
 
 # Jetbrains
 for_window [class="^com-intellij-updater-Runner$" title="^Update$"] floating enable
@@ -83,10 +85,11 @@ focus_follows_mouse no
 # bindsym $mod+Return exec i3-sensible-terminal
 # bindsym $mod+Return exec terminal.sh
 #bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec urxvt
+#bindsym $mod+Return exec urxvt
 #bindsym $mod+Return exec ghostty
+bindsym $mod+Return exec exoterm
 bindsym Print exec flameshot gui
-
+bindsym $mod+Shift+s exec flameshot gui
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -196,16 +199,16 @@ bindsym Mod1+Tab exec --no-startup-id rofi -show window
 #bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
 
 
-exec --no-startup-id hsetroot -solid "#777777" # desktop background color
+#exec --no-startup-id hsetroot -solid "#777777" # desktop background color
 #exec --no-startup-id picom --config ~/.config/picom.conf # screen tearing
 exec --no-startup-id xset r rate 200 30 # keyboard keys speed
 exec --no-startup-id xset s off -dpms
 exec --no-startup-id imwheel # mouse scroll settings
 exec_always --no-startup-id dunst
-#exec --no-startup-id feh --bg-fill ~/wallpapers/hovering-fog-3440x1440jpg.jpg
-exec --no-startup-id urxvtd -q
+exec --no-startup-id ~/.local/bin/wallpaper-rotate.sh
+exec --no-startup-id exotermd -q
 exec --no-startup-id setxkbmap -layout pl
-exec --no-startup-id /home/mrosiek/bin/default-display.sh
+#exec --no-startup-id sleep 3 && ~/.screenlayout/default.sh
 #exec --no-startup-id xfce4-panel
 
 # exec --no-startup-id nm-applet # network manager
@@ -214,8 +217,11 @@ exec --no-startup-id /home/mrosiek/bin/default-display.sh
 # exec --no-startup-id pasystray
 exec --no-startup-id ~/bin/status-bar.sh
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-exec --no-startup-id xsetroot -solid dimgray
+#exec --no-startup-id xsetroot -solid dimgray
 exec --no-startup-id udiskie
+exec --no-startup-id easyeffects --hide-window
+exec --no-startup-id ~/.config/i3/scripts/claude-tray
+exec_always --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -286,16 +292,16 @@ client.unfocused #333333 #333333 #888888 #292d2e
 client.urgent #2f343a #900000 #ffffff #900000
 #xsetroot -solid "#000000"i
 
-workspace 1 output DP-0
-workspace 2 output DP-0
-workspace 3 output DP-0
-workspace 4 output DP-0
-workspace 5 output DP-0
-workspace 6 output DP-0
-workspace 7 output HDMI-0
-workspace 8 output HDMI-0
-workspace 9 output HDMI-0
-workspace 10 output HDMI-0
+#workspace 1 output DP-0
+#workspace 2 output DP-0
+#workspace 3 output DP-0
+#workspace 4 output DP-0
+#workspace 5 output DP-0
+#workspace 6 output DP-0
+#workspace 7 output HDMI-0
+#workspace 8 output HDMI-0
+#workspace 9 output HDMI-0
+#workspace 10 output HDMI-0
 
 set $mode_compositor Compositor: On (1) | Off (2)
 mode "$mode_compositor" {
@@ -308,9 +314,10 @@ bindsym $mod+Shift+p mode "$mode_compositor"
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
-set $mode_display Monitor Wide (1) | Monitor 1080p only (2)
+set $mode_display Auto (a) | Native 5120x1440 (1) | Home 1080p (2)
 mode "$mode_display" {
-    bindsym 1 exec --no-startup-id ~/.screenlayout/home-wide.sh && imwheel; mode "default"
+    bindsym a exec --no-startup-id autorandr --change --default default; mode "default"
+    bindsym 1 exec --no-startup-id ~/.screenlayout/default.sh && imwheel; mode "default"
     bindsym 2 exec --no-startup-id ~/.screenlayout/home-1080p.sh && imwheel; mode "default"
 
     # back to normal: Enter or Escape

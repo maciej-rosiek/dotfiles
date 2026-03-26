@@ -1,0 +1,24 @@
+#!/bin/bash
+
+STATE_DIR="/tmp/claude-sessions"
+lines=""
+
+for f in "$STATE_DIR"/*.json; do
+    [ -f "$f" ] || continue
+
+    status=$(jq -r '.status // "idle"' "$f" 2>/dev/null)
+    topic=$(jq -r '.topic // empty' "$f" 2>/dev/null)
+    cwd=$(jq -r '.cwd // empty' "$f" 2>/dev/null)
+    label="${topic:-${cwd##*/}}"
+    [ -z "$label" ] && label="unknown"
+
+    case "$status" in
+        needs_attention) lines+="* ${label} - needs input\n" ;;
+        working) lines+="> ${label} - working\n" ;;
+        *) lines+="  ${label} - idle\n" ;;
+    esac
+done
+
+[ -z "$lines" ] && exit 0
+
+notify-send --app-name='Claude Code' --urgency=low --replace-id=999 "$(echo -e "$lines")"

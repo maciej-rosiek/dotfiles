@@ -1,0 +1,40 @@
+#!/bin/bash
+STATUS="$1"
+INPUT=$(cat)
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // empty')
+[ -z "$SESSION_ID" ] && exit 0
+mkdir -p /tmp/claude-sessions
+
+CWD=$(echo "$INPUT" | jq -r '.cwd // empty')
+CWD="${CWD:-$PWD}"
+
+TOPIC=""
+if [ -f "/tmp/claude-sessions/${SESSION_ID}.json" ]; then
+    TOPIC=$(jq -r '.topic // empty' "/tmp/claude-sessions/${SESSION_ID}.json" 2>/dev/null)
+fi
+
+if [ -z "$TOPIC" ]; then
+    PROJECT_DIR=$(echo "$CWD" | sed 's|/|-|g; s|^-||')
+    TRANSCRIPT="/home/mrosiek/.claude/projects/-${PROJECT_DIR}/${SESSION_ID}.jsonl"
+    if [ -f "$TRANSCRIPT" ]; then
+        TOPIC=$(head -2 "$TRANSCRIPT" | tail -1 | jq -r '.message.content | if type == "string" then .[:60] elif type == "array" then map(select(.type == "text")) | .[0].text[:60] else "" end' 2>/dev/null)
+    fi
+fi
+
+PREV_STATUS=""
+if [ -f "/tmp/claude-sessions/${SESSION_ID}.json" ]; then
+    PREV_STATUS=$(jq -r '.status // empty' "/tmp/claude-sessions/${SESSION_ID}.json" 2>/dev/null)
+fi
+
+jq -n --arg id "$SESSION_ID" --arg status "$STATUS" --arg cwd "$CWD" --arg topic "$TOPIC" \
+  '{id: $id, status: $status, cwd: $cwd, topic: $topic}' > "/tmp/claude-sessions/${SESSION_ID}.json"
+
+LABEL=$(echo "${TOPIC:-${CWD##*/}}" | sed 's/<[^>]*>//g')
+if [ "$STATUS" != "$PREV_STATUS" ]; then
+    CWD_SHORT="${CWD/#$HOME/~}"
+    if [ "$STATUS" = "needs_attention" ]; then
+        notify-send --app-name='Claude Code' --urgency=normal --replace-id=998 "$CWD_SHORT - needs input"
+    elif [ "$STATUS" = "idle" ] && [ "$PREV_STATUS" = "working" ]; then
+        notify-send --app-name='Claude Code' --urgency=low --replace-id=998 "$CWD_SHORT - finished"
+    fi
+fi

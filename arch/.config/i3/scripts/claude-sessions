@@ -1,0 +1,54 @@
+#!/bin/bash
+
+STATE_DIR="/tmp/claude-sessions"
+
+if [ ! -d "$STATE_DIR" ] || [ -z "$(ls -A "$STATE_DIR" 2>/dev/null)" ]; then
+    exit 0
+fi
+
+now=$(date +%s)
+dots=""
+entries=()
+
+for f in "$STATE_DIR"/*.json; do
+    [ -f "$f" ] || continue
+
+    mod=$(stat -c %Y "$f")
+    age=$(( now - mod ))
+    if [ "$age" -gt 600 ]; then
+        rm -f "$f"
+        continue
+    fi
+
+    status=$(jq -r '.status // "idle"' "$f" 2>/dev/null)
+    topic=$(jq -r '.topic // empty' "$f" 2>/dev/null)
+    cwd=$(jq -r '.cwd // empty' "$f" 2>/dev/null)
+    label="${topic:-${cwd##*/}}"
+    [ -z "$label" ] && label="unknown"
+
+    case "$status" in
+        needs_attention)
+            dots="${dots}<span color='#ff5555'>●</span>"
+            entries+=("● ${label} [needs input]")
+            ;;
+        working)
+            dots="${dots}<span color='#50fa7b'>●</span>"
+            entries+=("● ${label} [working]")
+            ;;
+        *)
+            dots="${dots}<span color='#999999'>●</span>"
+            entries+=("● ${label} [idle]")
+            ;;
+    esac
+done
+
+if [ -z "$dots" ]; then
+    exit 0
+fi
+
+echo "${dots}"
+
+if [ "${BLOCK_BUTTON:-0}" -eq 1 ]; then
+    /home/mrosiek/.config/i3/scripts/claude-sessions-menu &
+    disown
+fi
