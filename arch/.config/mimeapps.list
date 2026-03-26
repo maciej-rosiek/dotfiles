@@ -1,5 +1,4 @@
 [Default Applications]
-inode/directory=thunar.desktop
 text/html=google-chrome.desktop
 x-scheme-handler/http=google-chrome.desktop
 x-scheme-handler/https=google-chrome.desktop
@@ -11,6 +10,15 @@ image/jpeg=gpicview.desktop
 x-scheme-handler/webcal=google-chrome.desktop
 text/plain=code.desktop
 x-scheme-handler/mailto=google-chrome.desktop
+inode/directory=thunar.desktop
+video/quicktime=vlc.desktop
+video/x-matroska=vlc.desktop
+audio/mpeg=vlc.desktop
+x-scheme-handler/muffon=muffon.desktop
+x-scheme-handler/sgnl=signal.desktop
+x-scheme-handler/signalcaptcha=signal.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/jetbrains=jetbrainsd.desktop
 
 [Added Associations]
 inode/socket=code.desktop;
@@ -18,3 +26,16 @@ image/png=gpicview.desktop;
 image/jpeg=gpicview.desktop;
 application/octet-stream=code.desktop;
 text/plain=code.desktop;
+video/mp4=vlc.desktop;mpv.desktop;
+application/x-shellscript=org.gnome.gedit.desktop;
+video/quicktime=vlc.desktop;
+application/pdf=google-chrome.desktop;com.github.xournalpp.xournalpp.desktop;
+text/markdown=org.gnome.gedit.desktop;
+application/yaml=code.desktop;
+video/x-matroska=mpv.desktop;vlc.desktop;
+audio/mpeg=vlc.desktop;
+text/csv=libreoffice-calc.desktop;org.gnome.gedit.desktop;code.desktop;
+video/webm=vlc.desktop;
+text/x-java=code.desktop;
+image/svg+xml=org.gnome.gedit.desktop;
+application/json=code.desktop;

@@ -1,8 +1,8 @@
-# path visible in dmenu
 export PATH="$PATH:$HOME/bin"
+export QT_QPA_PLATFORMTHEME=gtk3
 
 # disks automounting
-#udiskie &
+udiskie &
 
 xrandr --dpi 96
 xrdb -merge ~/.Xresources

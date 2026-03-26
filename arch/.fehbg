@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --no-fehbg --bg-fill '/home/mrosiek/wallpapers/hovering-fog-3440x1440jpg.jpg' 
+feh --no-fehbg --bg-fill '/home/mrosiek/wallpapers/current.jpg' 
